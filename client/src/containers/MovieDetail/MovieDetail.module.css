@@ -1,0 +1,13 @@
+.ShowCastBtn {
+    color:black;
+    border: 2px solid black;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+.ShowCastBtn:hover {
+   background-color: black;
+   color: white;
+   border-radius: 10px;
+   border: 2px solid black;
+}

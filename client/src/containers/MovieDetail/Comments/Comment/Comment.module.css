@@ -1,0 +1,19 @@
+.CommentTextArea {
+    margin-top: 10px;
+    width: 50%;
+    border: 1px solid aqua;
+}
+.ReplyBtn {
+    width: auto;
+    height: 100%;
+    border: 1px solid black;
+    color: black;
+    margin-left: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.LikeBtn {
+    margin-top: 20px;
+    margin-left: 10px;
+    background-color: black;
+}

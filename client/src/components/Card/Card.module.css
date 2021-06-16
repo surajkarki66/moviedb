@@ -1,0 +1,48 @@
+.Image {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: 320px;
+  transition: 0.5s ease;
+  backface-visibility: hidden;
+  border: 3px solid black;
+  cursor: pointer;
+}
+
+.Middle {
+  transition: 0.5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+  list-style: none;
+  color: white;
+  background-color: black;
+  padding: 5px 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+
+.Container:hover .Image {
+  opacity: 0.3;
+  border: 3px solid blue;
+}
+
+.Container:hover .Middle {
+  opacity: 1;
+  background-color: black;
+  padding: 5px 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  
+}
+
+.Text {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}

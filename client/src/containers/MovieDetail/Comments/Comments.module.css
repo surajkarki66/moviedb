@@ -1,0 +1,14 @@
+.CommentBtn {
+    width: auto;
+    height: 100%;
+    border: 1px solid black;
+    color: black;
+    margin-top: 20px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+.CommentTextArea {
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid aqua;
+}
