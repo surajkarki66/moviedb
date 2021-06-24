@@ -148,7 +148,7 @@ const Cards = (props) => {
               fontSize: "110%",
             }}
           >
-            {release.substring(0, 4)}
+            {release  && release.substring(0, 4)}
           </h4>
         </div>
       </Col>
