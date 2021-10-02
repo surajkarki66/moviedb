@@ -1,13 +1,35 @@
-import React from "react";
-import { Typography } from "antd";
+import React, { useState } from "react";
+import { Typography, Button, Modal } from "antd";
+import { VideoCameraFilled } from "@ant-design/icons";
+import ReactPlayer from "react-player/youtube";
 
+import "./ImageSection.css";
 import { IMDB_URL } from "../../../configs";
-
 const { Title } = Typography;
 
 const ImageSection = (props) => {
-  const genres = props.genres;
-  const imdb_id = props.imdb;
+  const { genres, imdb, videos } = props;
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  let trailers = [];
+  if (videos && videos.results) {
+    const { results } = videos;
+    const t = results.filter(function (el) {
+      return (
+        el.type === "Trailer" || (el.type === "Teaser" && el.type === "Youtube")
+      );
+    });
+    trailers = t.map(function (el) {
+      return `https://www.youtube.com/watch?v=${el["key"]}`;
+    });
+  }
+
   return (
     <div
       style={{
@@ -68,13 +90,50 @@ const ImageSection = (props) => {
           <p style={{ color: "white", fontSize: "1rem", lineHeight: "1.6em" }}>
             {props.text}
           </p>
-          {imdb_id ? (
-            <button className="imdb-btn">
-              <a rel="noopener noreferrer" href={`${IMDB_URL}${imdb_id}`} style={{ color: "black" }} target="_blank">
+          {imdb ? (
+            <Button type="primary">
+              <a
+                rel="noopener noreferrer"
+                href={`${IMDB_URL}${imdb}`}
+                target="_blank"
+              >
                 IMDB
               </a>
-            </button>
+            </Button>
           ) : null}
+          {trailers && videos && (
+            <Button
+              type="primary"
+              style={{ marginLeft: "20px" }}
+              icon={<VideoCameraFilled />}
+              onClick={showModal}
+            >
+              Watch Trailer
+            </Button>
+          )}
+
+          <Modal
+            visible={isModalVisible}
+            onCancel={handleCancel}
+            closable={false}
+            centered
+            destroyOnClose
+            mask={false}
+            footer={null}
+            className="ant-modal-body "
+          >
+            <div className="player-wrapper">
+              <ReactPlayer
+                url={trailers}
+                className="react-player"
+                playing
+                width="100%"
+                height="100%"
+                controls={true}
+                closable={false}
+              />
+            </div>
+          </Modal>
         </div>
       </div>
     </div>
