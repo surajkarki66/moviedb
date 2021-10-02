@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Drawer, Button } from "antd";
 
-import "./sections/Navbar.css";
+import "./Navbar.css";
 import RightMenu from "./sections/RightMenu";
 import Logo from "../../../assets/images/Logo.png";
 
@@ -37,7 +37,9 @@ const NavBar = () => {
           className="menu__mobile-button"
           type="primary"
           onClick={showDrawer}
-        >MENU</Button>
+        >
+          MENU
+        </Button>
         <Drawer
           title="MENU ITEMS"
           placement="right"
