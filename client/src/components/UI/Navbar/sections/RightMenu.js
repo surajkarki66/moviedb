@@ -32,7 +32,7 @@ const RightMenu = (props) => {
                 window.location.reload();
               });
             }}
-            style={{ fontWeight: "bold", borderBottom: "none" }}
+            style={{ fontWeight: "bold" }}
           >
             LOGOUT
           </Button>
