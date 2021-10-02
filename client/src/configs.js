@@ -19,4 +19,4 @@ export const POSTER_SIZE = "w500";
 export const IMDB_URL = "https://www.imdb.com/title/";
 export const IMDB_ACTOR_URL = "https://www.imdb.com/name/";
 
-export const NODE_ENV = "development";
+export const NODE_ENV = "production";

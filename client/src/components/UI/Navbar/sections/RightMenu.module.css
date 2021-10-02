@@ -1,0 +1,24 @@
+.topnav {
+  overflow: hidden;
+  display: "flex";
+  justify-content: "end";
+}
+
+.topnav li {
+  text-align: center;
+  padding: 6px 10px;
+  text-decoration: none;
+}
+
+.topnav li:hover {
+  color: white;
+}
+
+.topnav li.active {
+  background-color: #04aa6d;
+  color: white;
+}
+
+.topnavRight {
+  float: right;
+}
