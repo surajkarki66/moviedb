@@ -9,6 +9,7 @@ import classes from "./Like.module.css";
 
 const Like = (props) => {
   const user = useSelector((state) => state.user);
+  const [loading, setLoading] = useState(false);
   const [Likes, setLikes] = useState(0);
   const [LikeAction, setLikeAction] = useState(null);
   let variable = {};
@@ -20,6 +21,7 @@ const Like = (props) => {
   }
 
   useEffect(() => {
+    setLoading(true);
     Axios.post(`${LIKE_SERVER}/getLikes`, variable).then((response) => {
       if (response.data.success) {
         setLikes(response.data.likes.length);
@@ -27,9 +29,12 @@ const Like = (props) => {
         response.data.likes.map((like) => {
           if (like.userId === props.userId) {
             setLikeAction("liked");
+            setLoading(false);
           }
         });
+        setLoading(false);
       } else {
+        setLoading(false);
         alert("Failed to get likes");
       }
     });
@@ -40,25 +45,31 @@ const Like = (props) => {
     if (user.userData) {
       if (LikeAction === null) {
         const token = localStorage.getItem("token");
+        setLoading(true);
         Axios.post(`${LIKE_SERVER}/upLike`, variable, {
           headers: { Authorization: "Bearer " + token },
         }).then((response) => {
           if (response.data.success) {
             setLikes(Likes + 1);
             setLikeAction("liked");
+            setLoading(false);
           } else {
+            setLoading(false);
             alert("Failed to increase the like");
           }
         });
       } else {
         const token = localStorage.getItem("token");
+        setLoading(true);
         Axios.post(`${LIKE_SERVER}/unLike`, variable, {
           headers: { Authorization: "Bearer " + token },
         }).then((response) => {
           if (response.data.success) {
             setLikes(Likes - 1);
             setLikeAction(null);
+            setLoading(false);
           } else {
+            setLoading(false);
             alert("Failed to decrease the like");
           }
         });
@@ -71,7 +82,11 @@ const Like = (props) => {
     <React.Fragment>
       <span key="comment-basic-like">
         <Tooltip title="Like">
-          <Button onClick={onLike} className={classes.LikeBtn}>
+          <Button
+            onClick={onLike}
+            className={classes.LikeBtn}
+            loading={loading}
+          >
             {LikeAction === "liked" ? "Liked" : "Like"}
             <span style={{ paddingLeft: "8px", cursor: "pointer" }}>
               {Likes}

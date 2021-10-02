@@ -13,6 +13,7 @@ const Favorite = (props) => {
   const movieTitle = props.movieInfo.title;
   const moviePost = props.movieInfo.backdrop_path;
   const movieRunTime = props.movieInfo.runtime;
+  const [loading, setLoading] = useState(false);
 
   const [FavouriteNumber, setFavouriteNumber] = useState(0);
   const [Favourited, setFavourited] = useState(false);
@@ -28,24 +29,30 @@ const Favorite = (props) => {
   const onClickFavorite = () => {
     if (user.userData) {
       if (Favourited) {
+        setLoading(true);
         axios
           .post(`${FAV_SERVER}/removeFromFavourite`, variables)
           .then((response) => {
             if (response.data.success) {
               setFavouriteNumber(FavouriteNumber - 1);
               setFavourited(!Favourited);
+              setLoading(false);
             } else {
+              setLoading(false);
               alert("Failed to Remove From Favourite");
             }
           });
       } else {
+        setLoading(true);
         axios
           .post(`${FAV_SERVER}/addToFavourite`, variables)
           .then((response) => {
             if (response.data.success) {
               setFavouriteNumber(FavouriteNumber + 1);
               setFavourited(!Favourited);
+              setLoading(false);
             } else {
+              setLoading(false);
               alert("Failed to Add To Favourite");
             }
           });
@@ -56,10 +63,13 @@ const Favorite = (props) => {
   };
 
   useEffect(() => {
+    setLoading(true);
     axios.post(`${FAV_SERVER}/favouriteNumber`, variables).then((response) => {
       if (response.data.success) {
         setFavouriteNumber(response.data.subscribeNumber);
+        setLoading(false);
       } else {
+        setLoading(false);
         alert("Failed to get Favorite Number");
       }
     });
@@ -67,7 +77,9 @@ const Favorite = (props) => {
     axios.post(`${FAV_SERVER}/favourited`, variables).then((response) => {
       if (response.data.success) {
         setFavourited(response.data.subcribed);
+        setLoading(false);
       } else {
+        setLoading(false);
         alert("Failed to get Favorite Information");
       }
     });
@@ -76,7 +88,11 @@ const Favorite = (props) => {
 
   return (
     <React.Fragment>
-      <Button className={classes.FavBtn} onClick={onClickFavorite}>
+      <Button
+        className={classes.FavBtn}
+        onClick={onClickFavorite}
+        loading={loading}
+      >
         {" "}
         {!Favourited ? "Add to Favourite" : "Not Favourite"} {FavouriteNumber}
       </Button>
