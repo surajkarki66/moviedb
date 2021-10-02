@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Typography, Popover, Spin } from "antd";
+import { DeleteFilled } from "@ant-design/icons";
 import axios from "../../axios-url";
 import "./Favorite.css";
 import { IMAGE_BASE_URL, POSTER_SIZE, FAV_SERVER } from "../../configs";
@@ -74,12 +75,13 @@ const FavoritePage = (props) => {
 
         <td style={{ color: "black" }}>{favorite.movieRunTime} mins</td>
         <td style={{ color: "black" }}>
-          <button
+          <li
+            style={{ listStyle: "none", cursor: "pointer" }}
             onClick={() => onClickDelete(favorite.movieId, favorite.userFrom)}
           >
             {" "}
-            Remove{" "}
-          </button>
+            <DeleteFilled />
+          </li>
         </td>
       </tr>
     );
@@ -99,14 +101,14 @@ const FavoritePage = (props) => {
           <thead>
             <tr>
               <th>Movie Title</th>
-              <th>Movie RunTime</th>
-              <td>Remove from favorites</td>
+              <th>Movie Runtime</th>
+              <td style={{ width: "10px" }}></td>
             </tr>
           </thead>
           <tbody>{renderCards}</tbody>
         </table>
       ) : (
-        <div style={{ textAlign: "center", marginTop: "100px" }}>
+        <div style={{ textAlign: "center", marginTop: "150px" }}>
           {" "}
           <Spin size="large" tip="Loading..." />
         </div>
