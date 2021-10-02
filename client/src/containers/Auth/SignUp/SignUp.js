@@ -91,111 +91,108 @@ const SignUp = (props) => {
         } = props;
         return (
           <div className="app">
-            {loading ? (
-              <ClipLoader css={loaderCSS} size={150} loading />
-            ) : (
-              <React.Fragment>
-                {" "}
-                <h1 style={{ marginBottom: "20px" }}>SIGN UP</h1>
-                {userRegister.error !== undefined &&
-                userRegister.error.response === undefined ? (
-                  <h2 style={{ textAlign: "center", color: "red" }}>
-                    {userRegister.error.message}
-                  </h2>
-                ) : null}
-                {userRegister.error ? (
-                  <h2 style={{ textAlign: "center", color: "red" }}>
-                    {userRegister.error.response.data.error}
-                  </h2>
-                ) : null}
-                <Form
-                  style={{
-                    minWidth: "205px",
-                    marginBottom: "150px",
-                    fontWeight: "bold",
-                  }}
-                  {...formItemLayout}
-                  onSubmit={handleSubmit}
-                >
-                  <Form.Item required label="Username">
-                    <Input
-                      id="username"
-                      placeholder="Enter your username"
-                      type="text"
-                      value={values.username}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={
-                        errors.username && touched.username
-                          ? "text-input error"
-                          : "text-input"
-                      }
-                    />
-                    {errors.username && touched.username && (
-                      <div className="input-feedback">{errors.username}</div>
-                    )}
-                  </Form.Item>
-
-                  <Form.Item
-                    required
-                    label="Password"
-                    hasFeedback
-                    validateStatus={
-                      errors.password && touched.password ? "error" : "success"
+            <React.Fragment>
+              {" "}
+              <h1 style={{ marginBottom: "20px" }}>SIGN UP</h1>
+              {userRegister.error !== undefined &&
+              userRegister.error.response === undefined ? (
+                <h2 style={{ textAlign: "center", color: "red" }}>
+                  {userRegister.error.message}
+                </h2>
+              ) : null}
+              {userRegister.error ? (
+                <h2 style={{ textAlign: "center", color: "red" }}>
+                  {userRegister.error.response.data.error}
+                </h2>
+              ) : null}
+              <Form
+                style={{
+                  minWidth: "205px",
+                  marginBottom: "150px",
+                  fontWeight: "bold",
+                }}
+                {...formItemLayout}
+                onSubmit={handleSubmit}
+              >
+                <Form.Item required label="Username">
+                  <Input
+                    id="username"
+                    placeholder="Enter your username"
+                    type="text"
+                    value={values.username}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.username && touched.username
+                        ? "text-input error"
+                        : "text-input"
                     }
+                  />
+                  {errors.username && touched.username && (
+                    <div className="input-feedback">{errors.username}</div>
+                  )}
+                </Form.Item>
+
+                <Form.Item
+                  required
+                  label="Password"
+                  hasFeedback
+                  validateStatus={
+                    errors.password && touched.password ? "error" : "success"
+                  }
+                >
+                  <Input
+                    id="password"
+                    placeholder="Enter your password"
+                    type="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.password && touched.password
+                        ? "text-input error"
+                        : "text-input"
+                    }
+                  />
+                  {errors.password && touched.password && (
+                    <div className="input-feedback">{errors.password}</div>
+                  )}
+                </Form.Item>
+
+                <Form.Item required label="Confirm" hasFeedback>
+                  <Input
+                    id="confirmPassword"
+                    placeholder="Enter your confirmPassword"
+                    type="password"
+                    value={values.confirmPassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.confirmPassword && touched.confirmPassword
+                        ? "text-input error"
+                        : "text-input"
+                    }
+                  />
+                  {errors.confirmPassword && touched.confirmPassword && (
+                    <div className="input-feedback">
+                      {errors.confirmPassword}
+                    </div>
+                  )}
+                </Form.Item>
+
+                <Form.Item {...tailFormItemLayout}>
+                  <Button
+                    onClick={handleSubmit}
+                    type="primary"
+                    disabled={isSubmitting}
+                    style={{ marginTop: "20px" }}
+                    loading={loading}
                   >
-                    <Input
-                      id="password"
-                      placeholder="Enter your password"
-                      type="password"
-                      value={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={
-                        errors.password && touched.password
-                          ? "text-input error"
-                          : "text-input"
-                      }
-                    />
-                    {errors.password && touched.password && (
-                      <div className="input-feedback">{errors.password}</div>
-                    )}
-                  </Form.Item>
-
-                  <Form.Item required label="Confirm" hasFeedback>
-                    <Input
-                      id="confirmPassword"
-                      placeholder="Enter your confirmPassword"
-                      type="password"
-                      value={values.confirmPassword}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={
-                        errors.confirmPassword && touched.confirmPassword
-                          ? "text-input error"
-                          : "text-input"
-                      }
-                    />
-                    {errors.confirmPassword && touched.confirmPassword && (
-                      <div className="input-feedback">
-                        {errors.confirmPassword}
-                      </div>
-                    )}
-                  </Form.Item>
-
-                  <Form.Item {...tailFormItemLayout}>
-                    <Button
-                      onClick={handleSubmit}
-                      type="primary"
-                      disabled={isSubmitting}
-                      style={{ marginTop: "20px" }}
-                    >
-                      Submit
-                    </Button>
-                  </Form.Item>
-                </Form>
-              </React.Fragment>
-            )}
+                    Submit
+                  </Button>
+                </Form.Item>
+              </Form>
+            </React.Fragment>
           </div>
         );
       }}

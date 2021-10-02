@@ -68,104 +68,99 @@ const SignIn = (props) => {
         } = props;
         return (
           <div className="app">
-            {userSignIn.loading ? (
-              <div style={{ textAlign: "center", marginBottom: "180px" }}>
-                <Spin tip="Loading..." size="large" loading="true" />
-              </div>
-            ) : (
-              <React.Fragment>
-                <h1 style={{ marginBottom: "30px" }}>SIGN IN</h1>
-                {userSignIn.result && !userSignIn.result.loginSuccess ? (
-                  <h2 style={{ textAlign: "center", color: "red" }}>
-                    {userSignIn.result.error}
-                  </h2>
-                ) : null}
-                {userSignIn.error !== undefined &&
-                userSignIn.error.response !== undefined ? (
-                  <h2 style={{ textAlign: "center", color: "red" }}>
-                    {userSignIn.error.response.data.error}
-                  </h2>
-                ) : null}
-                {userSignIn.error !== undefined &&
-                userSignIn.error.response === undefined ? (
-                  <h2 style={{ textAlign: "center", color: "red" }}>
-                    {userSignIn.error.message}
-                  </h2>
-                ) : null}
+            <React.Fragment>
+              <h1 style={{ marginBottom: "30px" }}>SIGN IN</h1>
+              {userSignIn.result && !userSignIn.result.loginSuccess ? (
+                <h2 style={{ textAlign: "center", color: "red" }}>
+                  {userSignIn.result.error}
+                </h2>
+              ) : null}
+              {userSignIn.error !== undefined &&
+              userSignIn.error.response !== undefined ? (
+                <h2 style={{ textAlign: "center", color: "red" }}>
+                  {userSignIn.error.response.data.error}
+                </h2>
+              ) : null}
+              {userSignIn.error !== undefined &&
+              userSignIn.error.response === undefined ? (
+                <h2 style={{ textAlign: "center", color: "red" }}>
+                  {userSignIn.error.message}
+                </h2>
+              ) : null}
 
-                <form
-                  onSubmit={handleSubmit}
-                  style={{
-                    width: "300px",
-                    marginBottom: "200px",
-                    fontWeight: "bold",
-                    marginRight: "20px",
-                  }}
-                >
-                  <Form.Item required label="Username">
-                    <Input
-                      id="username"
-                      placeholder="Enter your username"
-                      type="text"
-                      value={values.username}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={
-                        errors.username && touched.username
-                          ? "text-input error"
-                          : "text-input"
-                      }
-                    />
-                    {errors.username && touched.username && (
-                      <div className="input-feedback">{errors.username}</div>
-                    )}
-                  </Form.Item>
+              <form
+                onSubmit={handleSubmit}
+                style={{
+                  width: "300px",
+                  marginBottom: "200px",
+                  fontWeight: "bold",
+                  marginRight: "20px",
+                }}
+              >
+                <Form.Item required label="Username">
+                  <Input
+                    id="username"
+                    placeholder="Enter your username"
+                    type="text"
+                    value={values.username}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.username && touched.username
+                        ? "text-input error"
+                        : "text-input"
+                    }
+                  />
+                  {errors.username && touched.username && (
+                    <div className="input-feedback">{errors.username}</div>
+                  )}
+                </Form.Item>
 
-                  <Form.Item required label="Password">
-                    <Input
-                      id="password"
-                      placeholder="Enter your password"
-                      type="password"
-                      value={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      className={
-                        errors.password && touched.password
-                          ? "text-input error"
-                          : "text-input"
-                      }
-                    />
-                    {errors.password && touched.password && (
-                      <div className="input-feedback">{errors.password}</div>
-                    )}
-                  </Form.Item>
+                <Form.Item required label="Password">
+                  <Input
+                    id="password"
+                    placeholder="Enter your password"
+                    type="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.password && touched.password
+                        ? "text-input error"
+                        : "text-input"
+                    }
+                  />
+                  {errors.password && touched.password && (
+                    <div className="input-feedback">{errors.password}</div>
+                  )}
+                </Form.Item>
 
-                  <Form.Item>
-                    <Checkbox
-                      id="rememberMe"
-                      onChange={handleRememberMe}
-                      checked={rememberMe}
+                <Form.Item>
+                  <Checkbox
+                    id="rememberMe"
+                    onChange={handleRememberMe}
+                    checked={rememberMe}
+                  >
+                    Remember me
+                  </Checkbox>
+                  <div>
+                    <br />
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      className="login-form-button"
+                      style={{ minWidth: "100%" }}
+                      disabled={isSubmitting}
+                      onSubmit={handleSubmit}
+                      loading={userSignIn.loading}
                     >
-                      Remember me
-                    </Checkbox>
-                    <div>
-                      <br />
-                      <Button
-                        type="primary"
-                        htmlType="submit"
-                        className="login-form-button"
-                        style={{ minWidth: "100%" }}
-                        disabled={isSubmitting}
-                        onSubmit={handleSubmit}
-                      >
-                        Log in
-                      </Button>
-                    </div>
-                    Or <Link to="/register">register now!</Link>
-                  </Form.Item>
-                </form>
-              </React.Fragment>
-            )}
+                      Log in
+                    </Button>
+                  </div>
+                  Or <Link to="/register">register now!</Link>
+                </Form.Item>
+              </form>
+            </React.Fragment>
           </div>
         );
       }}
