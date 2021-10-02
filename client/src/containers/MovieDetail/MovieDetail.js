@@ -50,7 +50,7 @@ const MovieDetail = (props) => {
   };
 
   useEffect(() => {
-    const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
+    const endpoint = `${API_URL}movie/${movieId}?api_key=${API_KEY}&append_to_response=videos&language=en-US`;
     fetchDetail(endpoint);
 
     axios.post(`${COMMENT_SERVER}/comments`, movieVariable).then((response) => {
@@ -88,6 +88,7 @@ const MovieDetail = (props) => {
             image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${Movie.backdrop_path}`}
             title={Movie.original_title}
             text={Movie.overview}
+            videos={Movie.videos}
           />
           <div style={{ width: "85%", margin: "1rem auto" }}>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
@@ -148,7 +149,7 @@ const MovieDetail = (props) => {
           </div>
         </React.Fragment>
       ) : (
-        <div style={{ textAlign: "center", marginTop: "180px" }}>
+        <div style={{ textAlign: "center", marginTop: "230px" }}>
           <Spin tip="Loading..." size="large" loading="true" />
         </div>
       )}
