@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { withRouter, Link, Redirect } from "react-router-dom";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Form, Input, Button, Checkbox, Spin } from "antd";
+import { Form, Input, Button, Checkbox } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./SignIn.css";

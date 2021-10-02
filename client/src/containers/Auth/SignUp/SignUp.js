@@ -3,8 +3,6 @@ import moment from "moment";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
-import { ClipLoader } from "react-spinners";
-import { css } from "@emotion/core";
 import { Form, Input, Button } from "antd";
 
 import { registerUser } from "../../../actions/userActions";
@@ -31,11 +29,6 @@ const tailFormItemLayout = {
     },
   },
 };
-
-const loaderCSS = css`
-  margin-top: 50px;
-  margin-bottom: 25px;
-`;
 
 const SignUp = (props) => {
   const dispatch = useDispatch();
