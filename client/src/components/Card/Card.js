@@ -82,7 +82,7 @@ const Cards = (props) => {
               }}
             >
               {" "}
-              {release && moment(release).format("LL")}
+              {release && moment(new Date(release)).format("LL")}
             </Paragraph>
           </Typography>
         </div>

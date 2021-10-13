@@ -15,7 +15,11 @@ const MovieInfo = (props) => {
         <b> {movie.original_title}</b>
       </Descriptions.Item>
       <Descriptions.Item label="RELEASE DATE">
-        <b> {movie.release_date && moment(movie.release_date).format("LL")}</b>
+        <b>
+          {" "}
+          {movie.release_date &&
+            moment(new Date(movie.release_date)).format("LL")}
+        </b>
       </Descriptions.Item>
       <Descriptions.Item label="PRODUCTION COMPANY">
         <b>{movie.production_companies[0].name}</b>
