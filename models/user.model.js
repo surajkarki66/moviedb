@@ -8,20 +8,24 @@ const secret = process.env.JWT_SECRET;
 const userSchema = mongoose.Schema({
   username: {
     type: String,
+    trim: true,
     maxlength: 50,
-    required: true,
+    required: [true, "username is required"],
     unique: true,
   },
   password: {
     type: String,
     minlength: 8,
-    required: true,
+    required: [true, "password is required"],
   },
   role: {
     type: String,
     default: "subscriber",
   },
-  image: String,
+  image: {
+    type: String,
+    required: [true, "image is required"],
+  },
   token: {
     type: String,
   },
