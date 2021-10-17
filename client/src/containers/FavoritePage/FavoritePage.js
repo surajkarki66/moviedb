@@ -25,10 +25,12 @@ const FavoritePage = (props) => {
 
   const fetchFavouredMovie = () => {
     axios
-      .post(`${FAV_SERVER}/getFavouritedMovie`, variable)
+      .post(`${FAV_SERVER}/getFavoritedMovie`, variable, {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      })
       .then((response) => {
         if (response.data.success) {
-          setFavorites(response.data.favourites);
+          setFavorites(response.data.favorites);
           setLoading(false);
         } else {
           alert("Failed to get subscription videos");
@@ -43,7 +45,9 @@ const FavoritePage = (props) => {
     };
 
     axios
-      .post(`${FAV_SERVER}/removeFromFavourite`, variables)
+      .post(`${FAV_SERVER}/removeFromFavorite`, variables, {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      })
       .then((response) => {
         if (response.data.success) {
           fetchFavouredMovie();
