@@ -29,7 +29,7 @@ const RightMenu = (props) => {
             type="primary"
             onClick={() => {
               signOut(() => {
-                window.location.reload();
+                props.history.push("/");
               });
             }}
             style={{ fontWeight: "bold" }}
