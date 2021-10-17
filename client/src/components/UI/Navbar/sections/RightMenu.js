@@ -26,6 +26,7 @@ const RightMenu = (props) => {
         </Menu.Item>
         <Menu.Item key="/logout" style={{ borderBottom: "none" }}>
           <Link
+            to="/"
             type="primary"
             onClick={() => {
               signOut(() => {
