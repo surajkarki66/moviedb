@@ -17,7 +17,7 @@ import ImageSection from "../HomePage/Sections/ImageSection";
 import MovieInfo from "../../components/MovieDetail/MovieInfo";
 import Card from "../../components/Card/Card";
 import classes from "./MovieDetail.module.css";
-import Favourite from "./Favourite/Favourite";
+import Favorite from "./Favorite/Favorite";
 import Like from "./Like/Like";
 
 const loaderCSSForCast = css`
@@ -92,7 +92,7 @@ const MovieDetail = (props) => {
           />
           <div style={{ width: "85%", margin: "1rem auto" }}>
             <div style={{ display: "flex", justifyContent: "flex-end" }}>
-              <Favourite
+              <Favorite
                 movieInfo={Movie}
                 movieId={movieId}
                 userFrom={localStorage.getItem("userId")}
