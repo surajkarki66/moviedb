@@ -1,5 +1,5 @@
 //SERVER ROUTES
-export const FAV_SERVER = "/api/favourite";
+export const FAV_SERVER = "/api/favorite";
 export const USER_SERVER = "/api/users";
 export const LIKE_SERVER = "/api/like";
 export const COMMENT_SERVER = "/api/comment";
