@@ -2,6 +2,6 @@
 
 mdb stands for movie database. It is a website that contains the movies information's.
 
-![movie-db](https://user-images.githubusercontent.com/50628520/112197939-b6eb6400-8c34-11eb-8650-6dfd3e41662f.jpg)
+![moviedb](https://user-images.githubusercontent.com/50628520/137638074-a94db396-e678-4920-b901-fdaf5fb971cd.png)
 
 Link to website: https://moviedb6.netlify.app/
