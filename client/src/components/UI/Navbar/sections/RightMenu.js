@@ -2,12 +2,11 @@
 import React from "react";
 import { Menu } from "antd";
 import { withRouter, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 import { signOut } from "../../../../helpers/auth";
 
 const RightMenu = (props) => {
-  const user = useSelector((state) => state.user);
+  const token = localStorage.getItem("token");
   let rm = (
     <Menu mode={props.mode}>
       <Menu.Item key="/login" style={{ borderBottom: "none" }}>
@@ -18,7 +17,7 @@ const RightMenu = (props) => {
       </Menu.Item>
     </Menu>
   );
-  if (user.userData && user.userData.isAuth && !user.loading) {
+  if (token) {
     rm = (
       <Menu mode={props.mode}>
         <Menu.Item key="/favorite" style={{ borderBottom: "none" }}>
@@ -40,9 +39,6 @@ const RightMenu = (props) => {
         </Menu.Item>
       </Menu>
     );
-  }
-  if (user.loading) {
-    rm = null;
   }
 
   return <React.Fragment>{rm}</React.Fragment>;
