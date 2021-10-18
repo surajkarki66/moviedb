@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "../../../axios-url";
-import { Button } from "antd";
+import { Button, Tooltip } from "antd";
+import { HeartOutlined, HeartFilled } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 
 import { FAV_SERVER } from "../../../configs";
@@ -93,17 +94,27 @@ const Favorite = (props) => {
     });
     // eslint-disable-next-line
   }, []);
-
+  let favIcon;
+  if (Favorited) {
+    favIcon = <HeartFilled spin={loading} />;
+  } else {
+    favIcon = <HeartOutlined spin={loading} />;
+  }
   return (
     <React.Fragment>
-      <Button
-        className={classes.FavBtn}
-        onClick={onClickFavorite}
-        loading={loading}
-      >
-        {" "}
-        {!Favorited ? "Add to Favorite" : "Not Favorite"} {FavoriteNumber}
-      </Button>
+      <span key="comment-basic-favorite">
+        <Tooltip
+          title={Favorited ? "Remove from favorites" : "Add to favorites"}
+        >
+          <Button className={classes.FavBtn} onClick={onClickFavorite}>
+            {" "}
+            {favIcon}
+            <span style={{ cursor: "pointer" }}>
+              {!loading && FavoriteNumber}
+            </span>
+          </Button>
+        </Tooltip>
+      </span>
     </React.Fragment>
   );
 };
