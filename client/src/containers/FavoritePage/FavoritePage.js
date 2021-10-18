@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Typography, Popover, Spin } from "antd";
+import { Typography, Popover, Spin, Card } from "antd";
 import { DeleteFilled } from "@ant-design/icons";
 import axios from "../../axios-url";
 import "./Favorite.css";
@@ -11,7 +11,7 @@ const { Title } = Typography;
 
 const FavoritePage = (props) => {
   const [Favorites, setFavorites] = useState([]);
-  const [Loading, setLoading] = useState(true);
+  const [Loading, setLoading] = useState(false);
   const [isAuth, setIsAuth] = useState(true);
   const variable = { userFrom: localStorage.getItem("userId") };
 
@@ -24,6 +24,7 @@ const FavoritePage = (props) => {
   }, []);
 
   const fetchFavouredMovie = () => {
+    setLoading(true);
     axios
       .post(`${FAV_SERVER}/getFavoritedMovie`, variable, {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
@@ -33,7 +34,8 @@ const FavoritePage = (props) => {
           setFavorites(response.data.favorites);
           setLoading(false);
         } else {
-          alert("Failed to get subscription videos");
+          setLoading(false);
+          alert("Failed to add to favorites");
         }
       });
   };
@@ -59,16 +61,20 @@ const FavoritePage = (props) => {
 
   const renderCards = Favorites.map((favorite, index) => {
     const content = (
-      <div key={index}>
-        {favorite.moviePost ? (
-          <img
-            src={`${IMAGE_BASE_URL}${POSTER_SIZE}${favorite.moviePost}`}
-            alt={favorite.title}
-          />
-        ) : (
-          <Logo />
-        )}
-      </div>
+      <Card
+        key={index}
+        hoverable
+        cover={
+          favorite.moviePost ? (
+            <img
+              src={`${IMAGE_BASE_URL}${POSTER_SIZE}${favorite.moviePost}`}
+              alt={favorite.title}
+            />
+          ) : (
+            <Logo />
+          )
+        }
+      ></Card>
     );
 
     return (
