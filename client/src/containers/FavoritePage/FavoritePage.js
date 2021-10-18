@@ -45,7 +45,7 @@ const FavoritePage = (props) => {
       movieId: movieId,
       userFrom: userFrom,
     };
-
+    setLoading(true);
     axios
       .post(`${FAV_SERVER}/removeFromFavorite`, variables, {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
@@ -54,6 +54,7 @@ const FavoritePage = (props) => {
         if (response.data.success) {
           fetchFavouredMovie();
         } else {
+          setLoading(false);
           alert("Failed to Remove From Favorite");
         }
       });
