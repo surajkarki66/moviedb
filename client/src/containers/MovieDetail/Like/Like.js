@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Tooltip, Button } from "antd";
+import { LikeOutlined, LikeFilled } from "@ant-design/icons";
 import Axios from "../../../axios-url";
 import { useSelector } from "react-redux";
 import { withRouter } from "react-router";
@@ -78,19 +79,19 @@ const Like = (props) => {
       props.history.push("/login");
     }
   };
+  let likeIcon;
+  if (LikeAction === "liked") {
+    likeIcon = <LikeFilled spin={loading} />;
+  } else {
+    likeIcon = <LikeOutlined spin={loading} />;
+  }
   return (
     <React.Fragment>
       <span key="comment-basic-like">
-        <Tooltip title="Like">
-          <Button
-            onClick={onLike}
-            className={classes.LikeBtn}
-            loading={loading}
-          >
-            {LikeAction === "liked" ? "Liked" : "Like"}
-            <span style={{ paddingLeft: "8px", cursor: "pointer" }}>
-              {Likes}
-            </span>
+        <Tooltip title={LikeAction === "liked" ? "Unlike" : "Like"}>
+          <Button onClick={onLike} className={classes.LikeBtn}>
+            {likeIcon}
+            <span style={{ cursor: "pointer" }}>{!loading && Likes}</span>
           </Button>
         </Tooltip>
       </span>
