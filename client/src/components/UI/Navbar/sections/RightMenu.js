@@ -21,7 +21,7 @@ const RightMenu = (props) => {
     rm = (
       <Menu mode={props.mode}>
         <Menu.Item key="/favorite" style={{ borderBottom: "none" }}>
-          <Link to="/favorite">FAVORITE</Link>
+          <Link to="/favorite">FAVORITES</Link>
         </Menu.Item>
         <Menu.Item key="/logout" style={{ borderBottom: "none" }}>
           <Link
