@@ -12,6 +12,7 @@ const SingleComment = (props) => {
   const user = useSelector((state) => state.user);
   const [commentValue, setCommentValue] = useState("");
   const [OpenReply, setOpenReply] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setCommentValue(e.currentTarget.value);
@@ -31,14 +32,17 @@ const SingleComment = (props) => {
         responseTo: props.comment._id,
         content: commentValue,
       };
+      setLoading(true);
       Axios.post(`${COMMENT_SERVER}/save`, formData, {
         headers: { Authorization: "Bearer " + localStorage.getItem("token") },
       }).then((response) => {
         if (response.data.success) {
+          setLoading(false);
           setCommentValue("");
           setOpenReply(!OpenReply);
           props.refreshFunction(response.data.result);
         } else {
+          setLoading(false);
           alert("Failed to save Comment");
         }
       });
@@ -86,6 +90,7 @@ const SingleComment = (props) => {
             className={classes.ReplyBtn}
             onClick={onSubmit}
             disabled={commentValue ? false : true}
+            loading={loading}
           >
             Reply
           </Button>
