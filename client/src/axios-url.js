@@ -5,7 +5,7 @@ import { NODE_ENV } from "./configs";
 const instance = axios.create({
   baseURL:
     NODE_ENV === "production"
-      ? "https://moviedb66.herokuapp.com"
+      ? "https://web-production-374d.up.railway.app"
       : "http://localhost:5000",
   withCredentials: true,
 });
