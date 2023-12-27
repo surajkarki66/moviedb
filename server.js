@@ -46,6 +46,11 @@ app.use("/api/users", userRouter);
 app.use("/api/comment", commentRouter);
 app.use("/api/favorite", favoriteRouter);
 app.use("/api/like", likeRouter);
+app.use("/", (_, res) => {
+  return res
+    .status(200)
+    .json({ success: true, message: "API is successfully working!" });
+})
 
 const port = process.env.PORT || 5000;
 
