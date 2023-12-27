@@ -49,7 +49,7 @@ app.use("/api/like", likeRouter);
 app.use("/", (_, res) => {
   return res
     .status(200)
-    .json({ success: true, message: "API is successfully working!" });
+    .json({ success: true, message: "Welcome to the MovieDB API!!!" });
 })
 
 const port = process.env.PORT || 5000;
