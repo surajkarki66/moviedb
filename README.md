@@ -7,7 +7,10 @@ Welcome to my MovieDB Portfolio Project! Dive into a curated collection of movie
 [Click Here](https://moviedb6.netlify.app/)
 
 ## Local Preview
-
+Clone this repository
+```bash
+   git clone https://github.com/surajkarki66/moviedb
+```
 ### a. Backend
 1. Make sure you have Node.js installed on your local machine.
 2. Install `yarn` using npm.
